@@ -1,0 +1,47 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+frontend/issues-app/dist
+frontend/issues-app/tmp
+frontend/issues-app/out-tsc
+# Only exists if Bazel was run
+frontend/issues-app/bazel-out
+
+# dependencies
+frontend/issues-app/node_modules
+backend/node_modules
+
+# profiling files
+frontend/issues-app/chrome-profiler-events*.json
+frontend/issues-app/speed-measure-plugin*.json
+
+# IDEs and editors
+frontend/issues-app/.idea
+frontend/issues-app/.project
+frontend/issues-app/.classpath
+frontend/issues-app/.c9/
+frontend/issues-app/*.launch
+frontend/issues-app/.settings/
+frontend/issues-app/*.sublime-workspace
+
+# IDE - VSCode
+frontend/issues-app/.vscode/*
+frontend/issues-app/!.vscode/settings.json
+frontend/issues-app/!.vscode/tasks.json
+frontend/issues-app/!.vscode/launch.json
+frontend/issues-app/!.vscode/extensions.json
+frontend/issues-app/.history/*
+
+# misc
+frontend/issues-app/.sass-cache
+frontend/issues-app/connect.lock
+frontend/issues-app/coverage
+frontend/issues-app/libpeerconnection.log
+frontend/issues-app/npm-debug.log
+frontend/issues-app/yarn-error.log
+frontend/issues-app/testem.log
+frontend/issues-app/typings
+
+# System Files
+.DS_Store
+Thumbs.db
