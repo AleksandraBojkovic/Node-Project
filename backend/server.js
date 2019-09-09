@@ -1,22 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const issuesRoutes = require('./routes/issues.js');
+
 const app = express();
-require('dotenv/config'); 
-
-//ruta 
-app.get("/", function(req, res){
-    res.send("Neki kreativni tekst za probu :)")
-});
-
-app.get("/post", function(req, res){
-    res.send("Neki post.")
-});
 
 //povezivanje sa DB
 mongoose.connect(
-      process.env.DB_Connection,
-     { useNewUrlParser: true },
-      () => console.log("Halo, da li se cujemo?"))
+    'mongodb+srv://aki:asdfgh12345@cluster0-e9ctu.mongodb.net/IssuesDB?retryWrites=true&w=majority',
+    { useNewUrlParser: true },
+    () => console.log("Halo, da li se cujemo?")
+);
+    
+app.use(bodyParser.json());
+app.use('/issues', issuesRoutes);
 
 //osluskivanje servera
 app.listen(9001);
