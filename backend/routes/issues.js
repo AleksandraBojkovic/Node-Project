@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     }
 }); 
 
-//submits a issue
+//Submits a issue
 router.post("/", async (req, res)=> {
      const issue = new Issue({
          description: req.body.description,
@@ -23,7 +23,7 @@ router.post("/", async (req, res)=> {
      res.send(true);
 });
 
-//specific issue
+//Specific issue
 router.get('/:issueId', async (req,res) => {
     try { 
     const issue = await Issue.findById(req.params.issueId)
@@ -42,5 +42,18 @@ router.delete('/:issueId', async (req, res) => {
     res.json({message: err});
  }
 });
+ 
+//Update a issue
+router.patch('/:issueId', async (req, res) => {
+    try{ 
+    const updateIssue = await Issue.updateOne(
+        {_id: req.params.issueId}, 
+        {$set: {description: req.body.description}}
+        );
+        res.json(updateIssue);
+     } catch(err) {
+         res.json({message: err});
+     }
+})
 
 module.exports = router;
