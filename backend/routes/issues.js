@@ -55,4 +55,36 @@ router.patch("/:issueId", async (req, res) => {
   }
 });
 
+router.post("/status/:issueId", async (req, res) => {
+  try {
+    const newStatus = req.body.status;
+    const issueId = req.params.issueId;
+    const updateStatus = await Issue.updateOne(
+      { _id: issueId },
+      { $set: { status: newStatus } }
+    );
+    res.json(updateStatus);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
+//Comments
+router.post("/comment/:issueId", async (req, res) => {
+  try {
+    const issueId = req.params.issueId;
+    const newComment = req.body.comment;
+    if (newComment == null) {
+      res.send("Comment format is incorrect.");
+    }
+    const updateComment = await Issue.updateOne(
+      { _id: issueId },
+      { $push: { comments: newComment } }
+    );
+    res.json(updateComment);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 module.exports = router;
