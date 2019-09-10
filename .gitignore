@@ -25,7 +25,7 @@ frontend/issues-app/.settings/
 frontend/issues-app/*.sublime-workspace
 
 # IDE - VSCode
-frontend/issues-app/.vscode/*
+.vscode/*
 frontend/issues-app/!.vscode/settings.json
 frontend/issues-app/!.vscode/tasks.json
 frontend/issues-app/!.vscode/launch.json
@@ -45,3 +45,4 @@ frontend/issues-app/typings
 # System Files
 .DS_Store
 Thumbs.db
+.vscode/
