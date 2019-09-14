@@ -1,15 +1,15 @@
+const dotenv = require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const issuesRoutes = require("./routes/issues.js");
 
+
 const app = express();
 
 //povezivanje sa DB
-mongoose.connect(
-  "mongodb+srv://aki:asdfgh12345@cluster0-e9ctu.mongodb.net/IssuesDB?retryWrites=true&w=majority",
-  { useNewUrlParser: true },
-  () => console.log("Halo, da li se cujemo?")
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () =>
+  console.log("Connected to DB!?")
 );
 
 app.use(bodyParser.json());
