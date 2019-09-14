@@ -1,5 +1,10 @@
 const mongoose = require("mongoose");
 
+const statusEnum = Object.freeze({
+  PENDING: "pending",
+  COMPLETE: "complete"
+});
+
 const IssueSchema = mongoose.Schema({
   description: {
     type: String,
@@ -11,7 +16,8 @@ const IssueSchema = mongoose.Schema({
   },
   status: {
     type: String,
-    default: "pending"
+    default: "pending",
+    enum: Object.values(statusEnum)
   },
   comments: [
     {
@@ -24,7 +30,11 @@ const IssueSchema = mongoose.Schema({
         default: Date.now
       }
     }
-  ]
+  ],
+  file: {
+    type: Buffer,
+    required: false
+  }
 });
 
 module.exports = mongoose.model("Issues", IssueSchema);
