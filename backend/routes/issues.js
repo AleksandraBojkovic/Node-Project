@@ -1,8 +1,6 @@
 const express = require("express");
 const Issue = require("../models/Issue");
 const router = express.Router();
-// const app = express();
-// const http = require("http");
 
 /**
  * Get back all the issues.
