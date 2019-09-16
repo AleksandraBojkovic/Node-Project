@@ -2,15 +2,17 @@
 <br>
 <button (click)="createNewIssue()">Create a new Issue</button>   
 <br>
-<button type="submit">Delete Issue</button> <br>
 
 <div *ngFor='let issue of issues'>
   <label>ISSUE:</label> <br><br> Date of issue: {{issue.date}}<br>
   Description of issue: {{issue.description}}
   <br><br>
   <button type="submit" formmethod="patch">Update Issue</button> <br>
+  <button (click)="delete(issue._id)">Delete Issue</button> <br>
 
-  <label> COMMENTS:</label>
+  <label> COMMENTS:</label> <br>
+  <!-- <input id="comment" [(ngModel)]="comment" placeholder="Place for your comment."> <button (click)="createNewIssue()">Create a new Issue</button>    -->
+
   <div *ngFor='let comment of issue.comments'>
     <div *ngIf="comment">
       {{comment.text}} {{comment.date}}

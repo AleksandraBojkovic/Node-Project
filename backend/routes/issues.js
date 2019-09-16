@@ -67,8 +67,8 @@ router.get("/:issueId", async (req, res) => {
  */
 router.delete("/:issueId", async (req, res) => {
   try {
-    const removedIssue = await Issue.remove({ _id: req.params.issueId });
-    res.json(removedIssue);
+    await Issue.remove({ _id: req.params.issueId });
+    res.json(true);
   } catch (err) {
     res.json({ message: err });
   }
