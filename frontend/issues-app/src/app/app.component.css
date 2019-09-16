@@ -1,0 +1,17 @@
+*{
+    padding:0px;
+    margin:0px;
+}
+
+#placeholder{
+  height: 30px;
+  width: 250px;
+}
+
+div{
+  width: 300px;
+  height: 200px;
+  border: 1px solid blue;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  overflow-y: scroll;
+}

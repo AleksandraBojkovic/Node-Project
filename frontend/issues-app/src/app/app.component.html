@@ -1,12 +1,22 @@
+<input id="placeholder" [(ngModel)]="description" placeholder="Please enter new issue description.">
+<br>
+<button (click)="createNewIssue()">Create a new Issue</button>   
+<br>
+<button type="submit">Delete Issue</button> <br>
+
 <div *ngFor='let issue of issues'>
-  ISSUE: {{issue.date}} {{issue.description}}
+  <label>ISSUE:</label> <br><br> Date of issue: {{issue.date}}<br>
+  Description of issue: {{issue.description}}
   <br><br>
-  COMMENTS:
+  <button type="submit" formmethod="patch">Update Issue</button> <br>
+
+  <label> COMMENTS:</label>
   <div *ngFor='let comment of issue.comments'>
     <div *ngIf="comment">
       {{comment.text}} {{comment.date}}
     </div>
   </div>
+
   <br>
   <br>
 </div>

@@ -19,6 +19,7 @@ class Comment {
 })
 export class AppComponent {
   public issues: Issue[];
+  public description: string;
 
   constructor(private http: HttpClient) {
     this.getAllIssues();
@@ -30,7 +31,21 @@ export class AppComponent {
       .subscribe(res => this.issues = res);
   }
 
-  public createNewIssue() {}
+  public createNewIssue() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    const newIssue = {
+      description: this.description
+    }
+
+    this.http.post<string>("http://localhost:9001/issues", newIssue, httpOptions)
+    .subscribe(res => {
+      this.getAllIssues();
+    });    
+  }
 
   public deleteIssue() {}
 
