@@ -21,10 +21,11 @@ class Comment {
 export class AppComponent {
   public issues: Issue[];
   public newIssueDescription: string;
-  public comment: string;
+  public newComment: Comment;
 
   constructor(private http: HttpClient) {
     this.getAllIssues();
+    this.newComment = new Comment();
   }
 
   private async getAllIssues() {
@@ -78,20 +79,20 @@ export class AppComponent {
     })
   }
 
-//   public createNewComment() {
-//     const httpOptions = {
-//       headers: new HttpHeaders({
-//         "Content-Type": "application/json"
-//       })
-//     };
-//     const newComment = {
-//       comment: this.comment
-//     }
+  public createNewComment(issueId) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    };
+    const newCommentOnIssue = {
+      comment: this.newComment.text
+    }
 
-//     this.http
-//       .post<string>("http://localhost:9001/issues/comment" + issueId, newComment, httpOptions)
-//       .subscribe(() => {
-//         this.getAllIssues();
-//       });
-// } 
+    this.http
+      .post("http://localhost:9001/issues/" + issueId + "/comment", newCommentOnIssue, httpOptions)
+      .subscribe(() => {
+        this.getAllIssues();
+      });
+} 
 }

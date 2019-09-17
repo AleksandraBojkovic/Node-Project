@@ -4,24 +4,24 @@
 <br>
 
 <div *ngFor='let issue of issues'>
-  <label>ISSUE:</label><br><br> 
+  <label>ISSUE:</label><br><br>
   Date of issue: {{issue.date}}<br>
   Description of issue:<input id="placeholder" [(ngModel)]="issue.description">
   <br><br>
   <button (click)="saveIssue(issue._id, issue.description)">Update Issue</button> <br>
   <button (click)="delete(issue._id)">Delete Issue</button> <br>
   <br>
-  <label> COMMENTS:</label> <br>
   <br>
-  <input id="comment" [(ngModel)]="comment" placeholder="Place for your comment."> <button
-    (click)="createNewComment()">Create a new comment</button>
-
-  <div *ngFor='let comment of issue.comments'>
-    <div *ngIf="comment">
-      {{comment.text}} {{comment.date}}
+  <div>
+    <label> COMMENTS:</label> <br>
+    <input id="comment" [(ngModel)]="newComment.text" placeholder="Place for your comment.">
+    <button (click)="createNewComment(issue._id)">Create a new comment</button>
+    <div *ngFor='let comment of issue.comments'>
+      <div *ngIf="comment">
+        {{comment.text}} {{comment.date}}
+      </div>
     </div>
   </div>
-
   <br>
   <br>
 </div>
