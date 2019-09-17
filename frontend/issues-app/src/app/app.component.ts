@@ -20,7 +20,8 @@ class Comment {
 })
 export class AppComponent {
   public issues: Issue[];
-  public description: string;
+  public newIssueDescription: string;
+  public comment: string;
 
   constructor(private http: HttpClient) {
     this.getAllIssues();
@@ -39,8 +40,8 @@ export class AppComponent {
       })
     };
     const newIssue = {
-      description: this.description
-    };
+      description: this.newIssueDescription
+    }
 
     this.http
       .post<string>("http://localhost:9001/issues", newIssue, httpOptions)
@@ -61,5 +62,36 @@ export class AppComponent {
       })
   }
 
-  public saveIssue() {}
+  public saveIssue(issueId, newDescription) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    };
+    const updateIssue = {
+      description: newDescription
+    };
+    this.http.patch("http://localhost:9001/issues/" + issueId, updateIssue,  httpOptions)
+    .subscribe(() => {
+      alert("saved!");
+      this.getAllIssues();
+    })
+  }
+
+//   public createNewComment() {
+//     const httpOptions = {
+//       headers: new HttpHeaders({
+//         "Content-Type": "application/json"
+//       })
+//     };
+//     const newComment = {
+//       comment: this.comment
+//     }
+
+//     this.http
+//       .post<string>("http://localhost:9001/issues/comment" + issueId, newComment, httpOptions)
+//       .subscribe(() => {
+//         this.getAllIssues();
+//       });
+// } 
 }
