@@ -1,6 +1,37 @@
 const express = require("express");
 const Issue = require("../models/Issue");
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+
+ //storage 
+// var store = multer.diskStorage({
+//   destination:function(req, file, cb){
+//     cb(null, './uploads');
+//   },
+//   filename:function(req, file, cb){
+//     cb(null, Date.now() + "." + file.originalname);
+//   }
+// });
+
+const DIR = './uploads/';
+
+var upload = multer({dest: DIR}).single('file');
+
+//cuvanje file
+router.post('/upload', function(req, res, next){
+  upload(req, res, function(err){
+    if(err){
+      return res.status(501).json({error:err});
+    }
+    return res.json({originalname:req.file.originalname, uploadname:req.file.filename});
+  });
+});
+
+router.post('/fileDownload', function(req,   res, next){
+  filepath = path.join(__dirname, './uploads') + '/' + req.body.filename;
+  res.sendFile(filepath);
+});
 
 /**
  * Get back all the issues.
@@ -30,7 +61,7 @@ router.post("/", async (req, res) => {
     const issue = new Issue({
       description: req.body.description,
       date: req.body.date
-    });
+    }); 
     if (issue.description == undefined || issue.description == null) {
       res.end("Incorect post input.");
       return;
@@ -87,9 +118,10 @@ router.patch("/:issueId", async (req, res) => {
   try {
     const newDescription = req.body.description;
     const issueId = req.params.issueId;
+    const newStatus = req.body.status;
     const updateIssue = await Issue.updateOne(
       { _id: issueId },
-      { $set: { description: newDescription } }
+      { $set: { description: newDescription, status: newStatus } }
     );
     if (
       newDescription == undefined ||
@@ -122,7 +154,7 @@ router.post("/status/:issueId", async (req, res) => {
       { $set: { status: newStatus } }
     );
     if (newStatus == undefined || newStatus == null) {
-      res.end("Incorect status input.");
+    res.end("Incorect status input.");
       return;
     } else {
       res.json(updateStatus);
