@@ -1,21 +1,25 @@
-*{
-    padding:0px;
-    margin:0px;
-}
-
-#placeholder{
-  height: 30px;
-  width: 250px;
-}
-
-#comment{
-  width: 180px;
-  height: 30px;
-}
 div{
-  width: 300px;
-  height: 200px;
-  border: 1px solid blue;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  overflow-y: scroll;
+  width: 100%;
+    height:120;
+    border-width: 2px;
+    border-style:solid;
+    border-color:rgb(216, 150, 236);
+}
+
+fieldset{
+  background:pink;
+  font-size: 20px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+button{
+  height: 30px;
+  width: 200px;
+  color: blue;
+  background-color: white;
+}
+
+input{
+  height: 50px;
+  width: 400px;
 }
