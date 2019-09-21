@@ -26,7 +26,7 @@ enum Status {
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
-  providers: [FileService]
+  providers: [FileService ]
 })
 export class AppComponent {
   public issues: Issue[];
@@ -63,7 +63,6 @@ export class AppComponent {
   public onChange(event, issueId): void {
     const status = event.target.value;
 
-    // call api status for the status update!
   }
 
   private async getAllIssues() {

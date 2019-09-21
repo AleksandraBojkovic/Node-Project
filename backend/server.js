@@ -4,9 +4,10 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const issuesRoutes = require("./routes/issues.js");   
 const multer = require('multer');
+const config = require('config');
 
 const app = express();
-const DIR = './uploads/';
+const DIR = './routes/uploads';
 
 //povezivanje sa DB
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () =>
