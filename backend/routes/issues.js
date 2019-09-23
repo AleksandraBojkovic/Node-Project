@@ -3,18 +3,17 @@ const Issue = require("../models/Issue");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
-const config = require("config");
+const config = require("../config.js");
 
-const DIR = "./routes/uploads";
 
-var upload = multer({ dest: DIR }).single("file");
+var upload = multer({ dest: config.DIR }).single("file");
 
 /** Upload file.
  * @path {GET} /issues
  * @param  {Object} req - Express request object
  * @param  {Object} res - Express response object
  */
-router.post("/upload", function(req, res) {
+router.post(config.FILE_UPLOAD, function(req, res) {
   upload(req, res, function(err) {
     if (err) {
       return res.status(501).json({ error: err });
@@ -31,7 +30,7 @@ router.post("/upload", function(req, res) {
  * @param  {Object} req - Express request object
  * @param  {Object} res - Express response object
  */
-router.post("/fileDownload", function(req, res) {
+router.post(config.FILE_DOWNLOAD, function(req, res) {
   filepath = path.join(__dirname, "./uploads") + "\\" + req.body.filename;
   res.sendFile(filepath);
 });
@@ -42,7 +41,7 @@ router.post("/fileDownload", function(req, res) {
  * @param  {Object} req - Express request object
  * @param  {Object} res - Express response object
  */
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const issues = await Issue.find();
     res.json(issues);
@@ -59,7 +58,7 @@ router.get("/", async (req, res) => {
  * @param req.body.description {String} The issue description
  * @param req.body.date {String} The issue date
  */
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const issue = new Issue({
       description: req.body.description,
@@ -83,7 +82,7 @@ router.post("/", async (req, res) => {
  * @param  {Object} res - Express response object
  * @param req.params.issueId {String} The issueId param.
  */
-router.get("/:issueId", async (req, res) => {
+router.get(config.ISSUE_ID, async (req, res) => {
   try {
     const issue = await Issue.findById(req.params.issueId);
     res.json(issue);
@@ -99,7 +98,7 @@ router.get("/:issueId", async (req, res) => {
  * @param  {Object} res - Express response object
  * @param req.params.issueId {String} The issueId param.
  */
-router.delete("/:issueId", async (req, res) => {
+router.delete(config.ISSUE_ID, async (req, res) => {
   try {
     await Issue.remove({ _id: req.params.issueId });
     res.json(true);
@@ -117,7 +116,7 @@ router.delete("/:issueId", async (req, res) => {
  * @param req.body.description {String} The issue description.
 
  */
-router.patch("/:issueId", async (req, res) => {
+router.patch(config.ISSUE_ID, async (req, res) => {
   try {
     const newDescription = req.body.description;
     const issueId = req.params.issueId;
@@ -145,7 +144,7 @@ router.patch("/:issueId", async (req, res) => {
  * @param req.params.issueId {String} The issueId param.
  * @param req.body.status {String} The issue status.
  */
-router.post("/status/:issueId", async (req, res) => {
+router.post(config.ISSUE_STATUS, async (req, res) => {
   try {
     const newStatus = req.body.status;
     const issueId = req.params.issueId;
@@ -172,7 +171,7 @@ router.post("/status/:issueId", async (req, res) => {
  * @param req.params.issueId {String} The issueId param.
  * @param req.body.comment {String} The issue comment.
  */
-router.post("/:issueId/comment", async (req, res) => {
+router.post(config.ISSUE_COMMENT, async (req, res) => {
   try {
     const issueId = req.params.issueId;
     const newComment = {
