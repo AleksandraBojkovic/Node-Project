@@ -9,10 +9,21 @@ const config = require('config');
 const app = express();
 const DIR = './routes/uploads';
 
-//povezivanje sa DB
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () =>
-  console.log("Connected to DB!?")
-);
+// mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () =>
+//   console.log("Connected to DB!?")
+// );
+
+const env = process.env.NODE_ENV || 'development';
+
+if(env === 'test'){
+  process.env.MONGODB_URI = process.env.TEST_DB;
+} else {
+  process.env.MONGODB_URI = process.env.DB_CONNECTION;
+}
+mongoose.connect(process.env.MONGODB_URI,  { useNewUrlParser: true }, () => 
+  console.log(process.env.MONGODB_URI)
+  );
+
 
 app.use(bodyParser.json());
 
@@ -40,5 +51,4 @@ app.use(multer({
   }
 }).single('file'));
 
-//osluskivanje servera
 app.listen(9001);
