@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { FileSelectDirective, FileUploader } from "ng2-file-upload";
 import { FileService } from "./file.service";
 import { saveAs } from "file-saver";
+import { environment } from "../environments/environment";
 
 class Issue {
   _id: string;
@@ -26,14 +27,14 @@ enum Status {
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
-  providers: [FileService ]
+  providers: [FileService]
 })
 export class AppComponent {
   public issues: Issue[];
   public newIssueDescription: string;
   public newComment: Comment;
   public statusTypes: Status;
-  private uri = "http://localhost:9001/issues/upload";
+  private uri = environment.URL_URI;
   private uploader: FileUploader;
 
   attachmentList: any = [];
@@ -62,11 +63,10 @@ export class AppComponent {
 
   public onChange(event, issueId): void {
     const status = event.target.value;
-
   }
 
   private async getAllIssues() {
-    this.http.get<Issue[]>("http://localhost:9001/issues").subscribe(res => {
+    this.http.get<Issue[]>(environment.BASE_URL).subscribe(res => {
       this.issues = res;
     });
   }
@@ -82,7 +82,7 @@ export class AppComponent {
     };
 
     this.http
-      .post<string>("http://localhost:9001/issues", newIssue, httpOptions)
+      .post<string>(environment.BASE_URL, newIssue, httpOptions)
       .subscribe(() => {
         this.getAllIssues();
       });
@@ -95,7 +95,7 @@ export class AppComponent {
       })
     };
     this.http
-      .delete("http://localhost:9001/issues/" + issueId, httpOptions)
+      .delete(environment.BASE_URL + issueId, httpOptions)
       .subscribe(() => {
         this.getAllIssues();
       });
@@ -113,7 +113,7 @@ export class AppComponent {
     };
     this.http
       .patch(
-        "http://localhost:9001/issues/" + issueId,
+        environment.BASE_URL + issueId,
         updateIssue,
         httpOptions
       )
@@ -135,7 +135,7 @@ export class AppComponent {
 
     this.http
       .post(
-        "http://localhost:9001/issues/" + issueId + "/comment",
+        environment.BASE_URL + issueId + environment.COMMENT,
         newCommentOnIssue,
         httpOptions
       )
