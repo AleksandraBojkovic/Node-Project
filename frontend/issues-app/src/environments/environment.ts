@@ -3,6 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  URL_URI: "http://localhost:9001/issues/upload",
+  BASE_URL: "http://localhost:9001/issues/",
+  COMMENT: "/comment",
+  FILE_UPLOAD: "/upload",
+  ISSUE_ID: "/:issueId",
   production: false
 };
 
