@@ -52,3 +52,5 @@ app.use(multer({
 }).single('file'));
 
 app.listen(9001);
+
+module.exports = app;
