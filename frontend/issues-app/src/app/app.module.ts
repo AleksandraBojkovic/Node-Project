@@ -4,15 +4,15 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import {FileUploadModule} from 'ng2-file-upload';
-import { AppComponent } from './app.component';
-import { TestComponentComponent } from './components/test-component/test-component.component';
+import { AppComponent } from '../app/app.component';
 
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
+import { IssueComponent } from './issue/issue.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponentComponent
+    IssueComponent
   ],
   imports: [
     BrowserModule,
