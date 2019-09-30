@@ -22,11 +22,9 @@ describe("Issue", () => {
       done();
     });
   });
-
   /**
    * Test the /GET route
    */
-
   describe("/GET Issue", () => {
     it("it should get all the issues", done => {
       chai
