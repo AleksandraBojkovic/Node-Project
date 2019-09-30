@@ -1,0 +1,29 @@
+<mat-form-field>
+  <mat-label>Description</mat-label>
+  <input matInput [(ngModel)]="newIssueDescription">
+</mat-form-field>
+
+<br> <br>
+<button mat-mini-fab (click)="createNewIssue()">Create</button>
+<div *ngFor='let issue of issues'>
+  Date of issue: {{issue.date}}
+  <br> <br>
+  Description of issue:
+  <mat-form-field>
+    <mat-label>New description</mat-label>
+    <input matInput [(ngModel)]="issue.description">
+  </mat-form-field>
+  <br>
+  <br>
+  Status: <SELECT type="text" (change)="onChange($event, issue._id)">
+    <OPTION value="pending"> Pending </OPTION>
+    <OPTION value="complete"> Complete </OPTION>
+  </SELECT>
+  <br>
+  <br>
+  <app-file></app-file>
+  <button mat-mini-fab (click)="saveIssue(issue._id, issue.description, issue.status)">Update </button> <br><br>
+  <button mat-mini-fab (click)="delete(issue._id)">Delete </button> <br>
+  <app-comments [comments]="issue.comments" [issueId]="issue._id"></app-comments>
+  <br> <br>
+</div>

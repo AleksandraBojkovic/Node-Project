@@ -1,0 +1,12 @@
+<input type="file" name="fileUpload" multiple ng2FileSelect [uploader]="uploader">
+
+<div *ngFor="let item of uploader.queue">
+  <div>{{item.file.name}}</div>
+  <button mat-mini-fab type="button" (click)="item.upload()"> Upload </button>
+  <button mat-mini-fab type="button" (click)="item.remove()"> Cancel </button>
+</div>
+<div *ngFor="let item of attachmentList; let i = index">
+  <div>{{item.originalname}} </div>
+  <button mat-mini-fab (click)="download(i)">Download</button>
+</div>
+<br><br>

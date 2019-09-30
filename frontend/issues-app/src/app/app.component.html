@@ -1,49 +1,10 @@
-<table width="960px" align="center">
-  <tr>
-    <td>
-      <fieldset>
-        <legend> Issue </legend>
-        <input [(ngModel)]="newIssueDescription" placeholder="Please enter new issue description.">
-        <br> <br>
-        <button (click)="createNewIssue()">Create a new Issue</button>
-        <div *ngFor='let issue of issues'>
-          Date of issue: {{issue.date}}
-          <br>
-          Description of issue: <input [(ngModel)]="issue.description">
-          <br>
-          <br>
-          Status: <SELECT type="text" (change)="onChange($event, issue._id)">
-            <OPTION value="pending"> Pending </OPTION>
-            <OPTION value="complete"> Complete </OPTION>
-          </SELECT>
-          <br>
-          <br>
-          <input type="file" name="fileUpload" multiple ng2FileSelect [uploader]="uploader">
-          <div *ngFor="let item of uploader.queue">
-            <div>{{item.file.name}}</div>
-            <button type="button" (click)="item.upload()"> Upload </button>
-            <button type="button" (click)="item.remove()"> Cancel </button>
-          </div>
-          <div *ngFor="let item of attachmentList; let i = index">
-            <div>{{item.originalname}} </div>
-            <button (click)="download(i)">Download</button>
-          </div>
-          <br><br>
-          <button (click)="saveIssue(issue._id, issue.description, issue.status)">Update Issue</button> <br>
-          <button (click)="delete(issue._id)">Delete Issue</button> <br>
-          <br> <br>
-          <input [(ngModel)]="newComment.text" placeholder="Place for your comment.">
-          <br>
-          <br>
-          <button (click)="createNewComment(issue._id)">Create a new comment</button>
-          <div *ngFor='let comment of issue.comments'>
-            <span *ngIf="comment">
-              {{comment.text}} {{comment.date}}
-            </span>
-          </div>
-        </div>
-
-      </fieldset>
-    </td>
-  </tr>
+<table mat-table width="960px" align="center" class="mat-elevation-z8">
+    <tr>
+        <td>
+            <fieldset>
+                <legend> Issue </legend>
+                <app-issue> </app-issue>
+            </fieldset>
+        </td>
+    </tr>
 </table>
