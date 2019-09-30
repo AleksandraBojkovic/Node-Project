@@ -1,0 +1,10 @@
+fieldset{
+    border-width: 2px;
+    background: rgb(174, 238, 229);
+    font-size: 17px;
+    font-family:"Courier New", Courier, monospace;	
+  }
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }

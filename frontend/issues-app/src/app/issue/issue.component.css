@@ -1,25 +1,22 @@
-div{
+  div{
     width: 100%;
-      height:120;
-      border-width: 2px;
-      border-style:solid;
-      border-color:rgb(216, 150, 236);
+    height:120;
+    border-style:solid;
+    border-width: 1px;
+    border-color:rgb(175, 152, 182);
   }
-  
-  fieldset{
-    background:pink;
-    font-size: 20px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  }
-  
   button{
     height: 30px;
-    width: 200px;
+    width: 100px;
     color: blue;
     background-color: white;
   }
-  
   input{
     height: 50px;
     width: 400px;
+    font-size: 16px;
+    font-family:"Courier New", Courier, monospace;	
+  }
+  mat-label {
+    font-size: 14px;
   }

@@ -1,0 +1,11 @@
+    <mat-form-field>
+        <mat-label>Comment</mat-label>
+        <input matInput [(ngModel)]="newComment.text" />
+    </mat-form-field>
+    <br>
+    <button mat-mini-fab (click)="createNewComment(issueId)">
+        Create
+    </button>
+    <div *ngFor="let comment of comments">
+        <span *ngIf="comment"> {{ comment.text }} {{ comment.date }} </span>
+    </div>
