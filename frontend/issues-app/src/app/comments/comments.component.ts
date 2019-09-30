@@ -39,9 +39,8 @@ export class CommentsComponent implements OnInit {
       newCommentOnIssue,
       httpOptions
     ).subscribe(() =>{
-      console.log("Jajaj");
+      console.log("Saved.");
     })
   }
-
   ngOnInit() {}
 }
