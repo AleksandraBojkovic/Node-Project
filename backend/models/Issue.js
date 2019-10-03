@@ -30,11 +30,7 @@ const IssueSchema = mongoose.Schema({
         default: Date.now
       }
     }
-  ],
-  file: {
-    type: Buffer,
-    required: false
-  }
+  ]
 });
 
 module.exports = mongoose.model("Issues", IssueSchema);
