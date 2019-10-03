@@ -23,7 +23,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use("/issues", issuesRoutes);
+app.use(config.ISSUE_URL, issuesRoutes);
 
 app.listen(9001);
 
